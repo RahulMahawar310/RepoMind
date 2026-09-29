@@ -1,0 +1,15 @@
+# secrets
+.env
+
+# generated data (cloned repos + index)
+rag-data/
+
+# dependencies and build output
+node_modules/
+dist/
+__pycache__/
+*.pyc
+.venv/
+
+# OS
+.DS_Store

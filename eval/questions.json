@@ -1,0 +1,4 @@
+[
+  {"q": "Where is the express server started and which port does it use?", "expect_files": ["backend/src/index.js"]},
+  {"q": "How are chunks fused between vector and keyword search?", "expect_files": ["rag-service/app/retrieval/hybrid.py"]}
+]
