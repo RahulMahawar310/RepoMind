@@ -1,4 +1,5 @@
 import os
+
 from openai import OpenAI
 
 _client = None
@@ -19,9 +20,14 @@ Answer using ONLY the provided code context. Follow this format:
 def stream(question, ctx, history):
     global _client
     _client = _client or OpenAI()
-    context = "\n\n".join(f'[{c["file"]}:{c["start"]}-{c["end"]}]\n{c["text"]}' for c in ctx)
-    msgs = [{"role": "system", "content": SYS}, *history[-6:],
-            {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {question}"}]
+    context = "\n\n".join(
+        f'[{c["file"]}:{c["start"]}-{c["end"]}]\n{c["text"]}' for c in ctx
+    )
+    msgs = [
+        {"role": "system", "content": SYS},
+        *history[-6:],
+        {"role": "user", "content": f"Context:\n{context}\n\nQuestion: {question}"},
+    ]
     try:
         for ev in _client.chat.completions.create(
             model=os.getenv("LLM_MODEL", "gemini-2.5-flash"),
@@ -30,5 +36,5 @@ def stream(question, ctx, history):
         ):
             if ev.choices and ev.choices[0].delta.content:
                 yield ev.choices[0].delta.content
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         yield f"\n\n**Error:** {e}"

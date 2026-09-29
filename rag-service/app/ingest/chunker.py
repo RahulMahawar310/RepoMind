@@ -1,6 +1,7 @@
 """Code-aware chunking: Python via ast, other languages via boundary regex,
 fallback to line windows. (Swap in tree-sitter later for exact parsing.)"""
-import ast, re
+import ast
+import re
 
 BOUNDARY = re.compile(
     r"^\s*(export\s+)?(default\s+)?(async\s+)?(function|class|interface|func|public|private|protected)\b"

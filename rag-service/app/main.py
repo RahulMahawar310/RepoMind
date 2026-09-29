@@ -1,11 +1,13 @@
 import json
+
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
-from app.ingest.clone import DATA, fetch, files, sha
+
 from app.ingest.chunker import chunk_file
-from app.retrieval import vector, bm25, hybrid, rerank
+from app.ingest.clone import DATA, fetch, files, sha
 from app.llm import generate
+from app.retrieval import bm25, hybrid, rerank, vector
 
 app = FastAPI(title="RepoMind RAG service")
 

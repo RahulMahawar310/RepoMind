@@ -1,4 +1,6 @@
-import os, uuid
+import os
+import uuid
+
 from qdrant_client import QdrantClient, models
 from sentence_transformers import SentenceTransformer
 

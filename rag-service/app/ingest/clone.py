@@ -1,4 +1,6 @@
-import hashlib, pathlib, subprocess
+import hashlib
+import pathlib
+import subprocess
 
 DATA = pathlib.Path("data")
 EXT = {".py", ".js", ".jsx", ".ts", ".tsx", ".java", ".cpp", ".c", ".go", ".md"}
